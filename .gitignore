@@ -1,0 +1,18 @@
+Output/
+.agents/
+
+# Keil / MDK generated files
+*.o
+*.d
+*.crf
+*.lst
+*.map
+*.axf
+*.htm
+*.dep
+*.uvguix.*
+*.scvd
+
+# Windows temporary files
+Thumbs.db
+Desktop.ini

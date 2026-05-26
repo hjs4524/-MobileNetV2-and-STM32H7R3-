@@ -1,0 +1,61 @@
+/**
+ ****************************************************************************************************
+ * @file        ATK-DNH7R3_flash_ROMxspi1.sct
+ * @author      正点原子团队(ALIENTEK)
+ * @version     V1.0
+ * @date        2024-05-21
+ * @brief       分散加载脚本
+ * @license     Copyright (c) 2020-2032, 广州市星翼电子科技有限公司
+ ****************************************************************************************************
+ * @attention
+ * 
+ * 实验平台:正点原子 H7R3开发板
+ * 在线视频:www.yuanzige.com
+ * 技术论坛:www.openedv.com
+ * 公司网址:www.alientek.com
+ * 购买地址:openedv.taobao.com
+ * 
+ ****************************************************************************************************
+ */
+
+LR_IROM1 0x08000000 0x00010000 {
+    ER_IROM1 0x08000000 0x00010000 {
+        *.o (RESET, +First)
+        *(InRoot$$Sections)
+        .ANY (+XO)
+        
+        startup_stm32h7r3xx.o
+        system_stm32h7rsxx.o
+        __dczerorl.o
+        __dczerorl2.o
+        main.o
+        app_pick_demo.o
+        sys.o
+        delay.o
+        usart.o
+        stm32h7rsxx_hal.o
+        stm32h7rsxx_hal_cortex.o
+        stm32h7rsxx_it.o
+        memseta.o
+        stm32h7rsxx_hal_pwr_ex.o
+        stm32h7rsxx_hal_rcc.o
+        stm32h7rsxx_hal_xspi.o
+        stm32h7rsxx_hal_gpio.o
+        stm32h7rsxx_hal_rcc_ex.o
+        
+        norflash.o
+        norflash_mx25um25645g.o
+        norflash_w25q128_dual.o
+        norflash_ex.o
+    }
+    RW_IRAM1 0x24000000 0x00072000 {
+        .ANY (+RW +ZI)
+    }
+}
+
+LR_ROM1 0x90000000 0x02000000 {
+    ER_ROM1 0x90000000 0x02000000 {
+        .ANY (+RO)
+    }
+}
+
